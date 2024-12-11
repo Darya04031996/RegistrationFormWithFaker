@@ -19,7 +19,7 @@ public  class RegistrationTests extends TestBase {
     String dayOfBirth = "04";
     String subject = "Computer Science";
     String hobby = "Music";
-    String pictureFileName = "380x240.jfif";
+    String pictureFileName = "380x240.png";
     String address = "Street1, City2, Country3";
     String state = "NCR";
     String city = "Delhi";
@@ -56,7 +56,7 @@ public  class RegistrationTests extends TestBase {
    $(".table").$(byText("Date of Birth")).sibling(0).shouldHave(text("04 March,1996"));
    $(".table").$(byText("Subjects")).sibling(0).shouldHave(text("Computer Science"));
    $(".table").$(byText("Hobbies")).sibling(0).shouldHave(text("Music"));
-   $(".table").shouldHave(text("Picture")).shouldHave(text("380x240.jfif"));
+   $(".table").shouldHave(text("Picture")).shouldHave(text("380x240.png"));
    $(".table").$(byText("Address")).sibling(0).shouldHave(text("Street1"));
    $(".table").$(byText("State and City")).sibling(0).shouldHave(text("NCR Delhi"));
 

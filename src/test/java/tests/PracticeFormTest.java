@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pages.components.RegistrationPage;
 import utils.TestData;
 
-public class PracticeFormTest extends TestData {
+public class PracticeFormTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     TestData testData = new TestData();
 
@@ -17,7 +17,7 @@ public class PracticeFormTest extends TestData {
                 .setEmail(testData.getEmail())
                 .setGender(testData.getGender())
                 .setPhoneNumber(testData.getPhoneNumber())
-                .setDateOfBirth(testData.getDateOfBirth())
+                .setDateOfBirth(testData.getFormattedDateOfBirth())
                 .setSubjects(testData.getSubjects())
                 .setHobbies(testData.getHobbies())
                 .uploadPicture(testData.getPicturePath())
@@ -28,7 +28,7 @@ public class PracticeFormTest extends TestData {
                 .checkResult("Student Email", testData.getEmail())
                 .checkResult("Gender", testData.getGender())
                 .checkResult("Mobile", testData.getPhoneNumber())
-                .checkResult("Date of Birth", testData.getDateOfBirth())
+                .checkResult("Date of Birth", testData.getFormattedDateOfBirth())
                 .checkResult("Subjects", testData.getSubjects())
                 .checkResult("Hobbies", testData.getHobbies())
                 .checkResult("Picture", testData.getPicturePath())

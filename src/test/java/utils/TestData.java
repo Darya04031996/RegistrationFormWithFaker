@@ -24,29 +24,42 @@ public class TestData {
 
     public String getGender() {
         List<String> genders = Arrays.asList("Male", "Female", "Other");
-        return genders.get(random.nextInt(genders.size()));
+        return faker.options().option(genders.toArray(new String[0]));
     }
 
     public String getPhoneNumber() {
-        return faker.phoneNumber().subscriberNumber(10);
+        return faker.number().digits(10);
     }
 
-    public String getDateOfBirth() {
-        return faker.date().birthday(18, 65).toString();
+    public String getDateOfBirthDay() {
+        return String.valueOf(faker.number().numberBetween(1, 28));
+    }
+
+    public String getDateOfBirthMonth() {
+        List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        return faker.options().option(months.toArray(new String[0]));
+    }
+
+    public String getDateOfBirthYear() {
+        return String.valueOf(faker.number().numberBetween(1950, 2010));
+    }
+
+    public String getFormattedDateOfBirth() {
+        return getDateOfBirthDay() + " " + getDateOfBirthMonth() + "," + getDateOfBirthYear();
     }
 
     public String getSubjects() {
         List<String> subjects = Arrays.asList("Maths", "Physics", "Chemistry", "Biology", "English", "History", "Computer Science");
-        return subjects.get(random.nextInt(subjects.size()));
+        return faker.options().option(subjects.toArray(new String[0]));
     }
 
     public String getHobbies() {
         List<String> hobbies = Arrays.asList("Sports", "Reading", "Music");
-        return hobbies.get(random.nextInt(hobbies.size()));
+        return faker.options().option(hobbies.toArray(new String[0]));
     }
 
     public String getPicturePath() {
-        return "test.png";
+        return "looool.png";
     }
 
     public String getAddress() {
@@ -55,7 +68,7 @@ public class TestData {
 
     public String getState() {
         List<String> states = Arrays.asList("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
-        return states.get(random.nextInt(states.size()));
+        return faker.options().option(states.toArray(new String[0]));
     }
 
     public String getCity() {
