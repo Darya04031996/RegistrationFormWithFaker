@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class TestData {
     private final Faker faker = new Faker();
-    private final Random random = new Random();
 
     // Сохраненные данные для повторного использования
     private String firstName;
@@ -79,13 +78,13 @@ public class TestData {
 
     public String getDateOfBirthYear() {
         if (dateOfBirthYear == null) {
-            dateOfBirthYear = String.valueOf(faker.number().numberBetween(1950, 2010));
+            dateOfBirthYear = String.valueOf(faker.number().numberBetween(1950, 2005));
         }
         return dateOfBirthYear;
     }
 
     public String getFormattedDateOfBirth() {
-        return getDateOfBirthDay() + " " + getDateOfBirthMonth() + "," + getDateOfBirthYear();
+        return String.format("%02d %s,%s", Integer.parseInt(getDateOfBirthDay()), getDateOfBirthMonth(), getDateOfBirthYear());
     }
 
     public String getSubjects() {
@@ -124,18 +123,22 @@ public class TestData {
     }
 
     public String getCity() {
-        if (selectedCity == null) {
-            if (selectedState == null) {
-                getState(); // Ensure state is selected before city
-            }
-            selectedCity = switch (selectedState) {
-                case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
-                case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
-                case "Haryana" -> faker.options().option("Karnal", "Panipat");
-                case "Rajasthan" -> faker.options().option("Jaipur", "Jodhpur");
-                default -> "Delhi";
-            };
+        if (selectedState == null) {
+            getState();
         }
-        return selectedCity;
+        switch (selectedState) {
+            case "NCR":
+                return faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh":
+                return faker.options().option("Agra", "Lucknow", "Merrut");
+            case "Haryana":
+                return faker.options().option("Karnal", "Panipat");
+            case "Rajasthan":
+                return faker.options().option("Jaipur", "Jodhpur");
+            default:
+                return "Delhi";
+            }
+        }
+
     }
-}
+
