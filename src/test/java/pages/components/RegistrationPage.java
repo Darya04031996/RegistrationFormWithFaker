@@ -104,12 +104,6 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage checkResult(String key, String value) {
-        tableComponent.checkTableResult(key, value);
-        return this;
-
-
-    }
 
     public SelenideElement getCityInput() {
         return cityInput;
@@ -125,6 +119,12 @@ public class RegistrationPage {
 
     public void setStateInput(SelenideElement stateInput) {
         this.stateInput = stateInput;
+    }
+    public RegistrationPage checkResult(String key, String value) {
+        tableComponent.checkTableResult(key, value);
+        return this;
+
+
     }
 }
 

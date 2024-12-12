@@ -10,6 +10,22 @@ public class PracticeFormTest extends TestBase {
 
     @Test
     void fillPracticeFormTest() {
+        String firstName = testData.getFirstName();
+        String lastName = testData.getLastName();
+        String email = testData.getEmail();
+        String gender = testData.getGender();
+        String phoneNumber = testData.getPhoneNumber();
+        String dateOfBirthDay = testData.getDateOfBirthDay();
+        String dateOfBirthMonth = testData.getDateOfBirthMonth();
+        String dateOfBirthYear = testData.getDateOfBirthYear();
+        String formattedDateOfBirth = testData.getFormattedDateOfBirth();
+        String subjects = testData.getSubjects();
+        String hobbies = testData.getHobbies();
+        String picturePath = testData.getPicturePath();
+        String address = testData.getAddress();
+        String state = testData.getState();
+        String city = testData.getCity();
+
         registrationPage.openPage()
                 .removeBanner()
                 .setFirstName(testData.getFirstName())
@@ -25,15 +41,15 @@ public class PracticeFormTest extends TestBase {
                 .selectState(testData.getState())
                 .selectCity(testData.getCity())
                 .submit()
-                .checkResult("Student Name", testData.getFirstName() + " " + testData.getLastName())
-                .checkResult("Student Email", testData.getEmail())
-                .checkResult("Gender", testData.getGender())
-                .checkResult("Mobile", testData.getPhoneNumber())
-                .checkResult("Date of Birth", testData.getFormattedDateOfBirth())
-                .checkResult("Subjects", testData.getSubjects())
-                .checkResult("Hobbies", testData.getHobbies())
-                .checkResult("Picture", testData.getPicturePath())
-                .checkResult("Address", testData.getAddress())
-                .checkResult("State and City", testData.getState() + " " + testData.getCity());
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", formattedDateOfBirth)
+                .checkResult("Subjects", subjects)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", picturePath)
+                .checkResult("Address", address)
+                .checkResult("State and City", state + " " + city);
     }
 }

@@ -10,38 +10,78 @@ public class TestData {
     private final Faker faker = new Faker();
     private final Random random = new Random();
 
+    // Сохраненные данные для повторного использования
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String gender;
+    private String phoneNumber;
+    private String dateOfBirthDay;
+    private String dateOfBirthMonth;
+    private String dateOfBirthYear;
+    private String subjects;
+    private String hobbies;
+    private String picturePath = "looool.png";
+    private String address;
+    private String selectedState;
+    private String selectedCity;
+
     public String getFirstName() {
-        return faker.name().firstName();
+        if (firstName == null) {
+            firstName = faker.name().firstName();
+        }
+        return firstName;
     }
 
     public String getLastName() {
-        return faker.name().lastName();
+        if (lastName == null) {
+            lastName = faker.name().lastName();
+        }
+        return lastName;
     }
 
     public String getEmail() {
-        return faker.internet().emailAddress();
+        if (email == null) {
+            email = faker.internet().emailAddress();
+        }
+        return email;
     }
 
     public String getGender() {
-        List<String> genders = Arrays.asList("Male", "Female", "Other");
-        return faker.options().option(genders.toArray(new String[0]));
+        if (gender == null) {
+            List<String> genders = Arrays.asList("Male", "Female", "Other");
+            gender = faker.options().option(genders.toArray(new String[0]));
+        }
+        return gender;
     }
 
     public String getPhoneNumber() {
-        return faker.number().digits(10);
+        if (phoneNumber == null) {
+            phoneNumber = faker.number().digits(10);
+        }
+        return phoneNumber;
     }
 
     public String getDateOfBirthDay() {
-        return String.valueOf(faker.number().numberBetween(1, 28));
+        if (dateOfBirthDay == null) {
+            dateOfBirthDay = String.format("%02d", faker.number().numberBetween(1, 28));
+        }
+        return dateOfBirthDay;
     }
 
     public String getDateOfBirthMonth() {
-        List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        return faker.options().option(months.toArray(new String[0]));
+        if (dateOfBirthMonth == null) {
+            List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+            dateOfBirthMonth = faker.options().option(months.toArray(new String[0]));
+        }
+        return dateOfBirthMonth;
     }
 
     public String getDateOfBirthYear() {
-        return String.valueOf(faker.number().numberBetween(1950, 2010));
+        if (dateOfBirthYear == null) {
+            dateOfBirthYear = String.valueOf(faker.number().numberBetween(1950, 2010));
+        }
+        return dateOfBirthYear;
     }
 
     public String getFormattedDateOfBirth() {
@@ -49,37 +89,53 @@ public class TestData {
     }
 
     public String getSubjects() {
-        List<String> subjects = Arrays.asList("Maths", "Physics", "Chemistry", "Biology", "English", "History", "Computer Science");
-        return faker.options().option(subjects.toArray(new String[0]));
+        if (subjects == null) {
+            List<String> subjectList = Arrays.asList("Maths", "Physics", "Chemistry", "Biology", "English", "History", "Computer Science");
+            subjects = faker.options().option(subjectList.toArray(new String[0]));
+        }
+        return subjects;
     }
 
     public String getHobbies() {
-        List<String> hobbies = Arrays.asList("Sports", "Reading", "Music");
-        return faker.options().option(hobbies.toArray(new String[0]));
+        if (hobbies == null) {
+            List<String> hobbyList = Arrays.asList("Sports", "Reading", "Music");
+            hobbies = faker.options().option(hobbyList.toArray(new String[0]));
+        }
+        return hobbies;
     }
 
     public String getPicturePath() {
-        return "looool.png";
+        return picturePath;
     }
 
     public String getAddress() {
-        return faker.address().fullAddress();
+        if (address == null) {
+            address = faker.address().fullAddress();
+        }
+        return address;
     }
 
     public String getState() {
-        List<String> states = Arrays.asList("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
-        return faker.options().option(states.toArray(new String[0]));
+        if (selectedState == null) {
+            List<String> states = Arrays.asList("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+            selectedState = faker.options().option(states.toArray(new String[0]));
+        }
+        return selectedState;
     }
 
     public String getCity() {
-        String state = getState();
-        return switch (state) {
-            case "NCR" -> Arrays.asList("Delhi", "Gurgaon", "Noida").get(random.nextInt(3));
-            case "Uttar Pradesh" -> Arrays.asList("Agra", "Lucknow", "Merrut").get(random.nextInt(3));
-            case "Haryana" -> Arrays.asList("Karnal", "Panipat").get(random.nextInt(2));
-            case "Rajasthan" -> Arrays.asList("Jaipur", "Jodhpur").get(random.nextInt(2));
-            default -> "Delhi";
-        };
+        if (selectedCity == null) {
+            if (selectedState == null) {
+                getState(); // Ensure state is selected before city
+            }
+            selectedCity = switch (selectedState) {
+                case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+                case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+                case "Haryana" -> faker.options().option("Karnal", "Panipat");
+                case "Rajasthan" -> faker.options().option("Jaipur", "Jodhpur");
+                default -> "Delhi";
+            };
+        }
+        return selectedCity;
     }
 }
-
