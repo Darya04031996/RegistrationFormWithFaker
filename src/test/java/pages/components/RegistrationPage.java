@@ -1,9 +1,6 @@
 package pages.components;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import utils.TestData;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -11,24 +8,24 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private SelenideElement firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderWrapper = $("#genterWrapper"),
-            userNumberInput = $("#userNumber"),
-            dateOfBirthInput = $("#dateOfBirthInput"),
-            subjectsInput = $("#subjectsInput"),
-            hobbiesWrapper = $("#hobbiesWrapper"),
-            imageUpload = $("#uploadPicture"),
-            currentAddress = $("#currentAddress"),
-            stateField = $("#state"),
-            stateDropdown = $("#stateCity-wrapper"),
-            cityField = $("#city"),
-            cityDropdown = $("#stateCity-wrapper"),
-            submitBtn = $("#submit");
+    private SelenideElement firstNameInput = $("#firstName");
+    private SelenideElement lastNameInput = $("#lastName");
+    private SelenideElement userEmailInput = $("#userEmail");
+    private SelenideElement genderWrapper = $("#genterWrapper");
+    private SelenideElement userNumberInput = $("#userNumber");
+    private SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
+    private SelenideElement subjectsInput = $("#subjectsInput");
+    private SelenideElement hobbiesWrapper = $("#hobbiesWrapper");
+    private SelenideElement imageUpload = $("#uploadPicture");
+    private SelenideElement currentAddress = $("#currentAddress");
+    private SelenideElement stateCityWrapper = $("#stateCity-wrapper");
+    private SelenideElement stateInput = $("#state");
+    private SelenideElement cityInput = $("#city");
+    private SelenideElement submitBtn = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
     TableComponent tableComponent = new TableComponent();
+
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -90,18 +87,15 @@ public class RegistrationPage {
         currentAddress.setValue(address);
         return this;
     }
-
-    public RegistrationPage setState(String value) {
-        stateField.click();
-        stateDropdown.$(byText(value)).click();
+    public RegistrationPage selectState(String value) {
+        stateInput.click();
+        stateCityWrapper.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage setStateAndCity(String state, String city) {
-        stateDropdown.click();
-        $x("//div[text()='" + state + "']").click();
-        cityDropdown.click();
-        $x("//div[text()='" + city + "']").click();
+    public RegistrationPage selectCity(String value) {
+        cityInput.click();
+        stateCityWrapper.$(byText(value)).click();
         return this;
     }
 
@@ -115,6 +109,22 @@ public class RegistrationPage {
         return this;
 
 
+    }
+
+    public SelenideElement getCityInput() {
+        return cityInput;
+    }
+
+    public void setCityInput(SelenideElement cityInput) {
+        this.cityInput = cityInput;
+    }
+
+    public SelenideElement getStateInput() {
+        return stateInput;
+    }
+
+    public void setStateInput(SelenideElement stateInput) {
+        this.stateInput = stateInput;
     }
 }
 

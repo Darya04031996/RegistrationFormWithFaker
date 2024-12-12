@@ -73,18 +73,13 @@ public class TestData {
 
     public String getCity() {
         String state = getState();
-        switch (state) {
-            case "NCR":
-                return Arrays.asList("Delhi", "Gurgaon", "Noida").get(random.nextInt(3));
-            case "Uttar Pradesh":
-                return Arrays.asList("Agra", "Lucknow", "Merrut").get(random.nextInt(3));
-            case "Haryana":
-                return Arrays.asList("Karnal", "Panipat").get(random.nextInt(2));
-            case "Rajasthan":
-                return Arrays.asList("Jaipur", "Jodhpur").get(random.nextInt(2));
-            default:
-                return "Delhi";
-        }
+        return switch (state) {
+            case "NCR" -> Arrays.asList("Delhi", "Gurgaon", "Noida").get(random.nextInt(3));
+            case "Uttar Pradesh" -> Arrays.asList("Agra", "Lucknow", "Merrut").get(random.nextInt(3));
+            case "Haryana" -> Arrays.asList("Karnal", "Panipat").get(random.nextInt(2));
+            case "Rajasthan" -> Arrays.asList("Jaipur", "Jodhpur").get(random.nextInt(2));
+            default -> "Delhi";
+        };
     }
 }
 

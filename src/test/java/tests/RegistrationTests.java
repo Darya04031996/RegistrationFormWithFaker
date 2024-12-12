@@ -48,8 +48,7 @@ public  class RegistrationTests extends TestBase {
         $("#react-select-4-input").setValue(city).pressEnter();
         $("#submit").click();
 
-
-        $(".table").$(byText("Student Name")).sibling(0).shouldHave(text("Darya Melgunova"));
+   $(".table").$(byText("Student Name")).sibling(0).shouldHave(text("Darya Melgunova"));
    $(".table").$(byText("Student Email")).sibling(0).shouldHave(text("darya.melgunova@gmail.com"));
    $(".table").$(byText("Gender")).sibling(0).shouldHave(text("Female"));
    $(".table").$(byText("Mobile")).sibling(0).shouldHave(text("8999543121"));
