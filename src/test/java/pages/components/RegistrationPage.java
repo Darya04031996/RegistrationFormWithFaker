@@ -1,5 +1,6 @@
 package pages.components;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
@@ -124,8 +125,10 @@ public class RegistrationPage {
     public RegistrationPage checkResult(String key, String value) {
         tableComponent.checkTableResult(key, value);
         return this;
-
-
+    }
+    public RegistrationPage verifyUserNumberFieldIsRed() {
+        userNumberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
+        return this;
     }
 }
 

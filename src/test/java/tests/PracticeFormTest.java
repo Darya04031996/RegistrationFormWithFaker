@@ -54,4 +54,38 @@ public class PracticeFormTest extends TestBase {
                 .checkResult("Address", address)
                 .checkResult("State and City", state + " " + city);
     }
+    @Test
+    void incompleteDatesTest() {
+        registrationPage.openPage()
+                .removeBanner()
+                .setFirstName(testData.getFirstName())
+                .setLastName(testData.getLastName())
+                .setEmail(testData.getEmail())
+                .setGender(testData.getGender())
+                .setPhoneNumber(testData.getPhoneNumber())
+                .setDateOfBirth(testData.getDateOfBirthDay(), testData.getDateOfBirthMonth(), testData.getDateOfBirthYear())
+                .submit()
+
+
+                .checkResult("Student Name", testData.getFirstName() + " " + testData.getLastName())
+                .checkResult("Student Email", testData.getEmail())
+                .checkResult("Gender", testData.getGender())
+                .checkResult("Mobile", testData.getPhoneNumber())
+                .checkResult("Date of Birth", testData.getDateOfBirthDay() + " " + testData.getDateOfBirthMonth() + "," + testData.getDateOfBirthYear());
+
+    }
+    @Test
+    void inccorectDateTest() {
+        registrationPage.openPage()
+                .removeBanner()
+                .setFirstName(testData.getFirstName())
+                .setLastName(testData.getLastName())
+                .setEmail(testData.getEmail())
+                .setGender(testData.getGender())
+                .setPhoneNumber(" ")
+                .setDateOfBirth(testData.getDateOfBirthDay(), testData.getDateOfBirthMonth(), testData.getDateOfBirthYear())
+                .submit()
+                .verifyUserNumberFieldIsRed();
+
+    }
 }
