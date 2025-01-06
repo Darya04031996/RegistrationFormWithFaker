@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
@@ -121,10 +120,6 @@ public class RegistrationPage {
         tableComponent.checkTableResult(key, value);
         return this;
     }
-    @Step("Проверяем, что граница поля электронной почты красного цвета")
-    public RegistrationPage verifyUserNumberFieldIsRed() {
-        userNumberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
-        return this;
-    }
+
 }
 

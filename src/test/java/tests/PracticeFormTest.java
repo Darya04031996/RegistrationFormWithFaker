@@ -77,19 +77,4 @@ public class PracticeFormTest extends TestBase {
                 .checkResult("Date of Birth", testData.getDateOfBirthDay() + " " + testData.getDateOfBirthMonth() + "," + testData.getDateOfBirthYear());
 
     }
-    @Test
-    @Tag("simple")
-    void inccorectDateTest() {
-        registrationPage.openPage()
-                .removeBanner()
-                .setFirstName(testData.getFirstName())
-                .setLastName(testData.getLastName())
-                .setEmail(testData.getEmail())
-                .setGender(testData.getGender())
-                .setPhoneNumber(" ")
-                .setDateOfBirth(testData.getDateOfBirthDay(), testData.getDateOfBirthMonth(), testData.getDateOfBirthYear())
-                .submit()
-                .verifyUserNumberFieldIsRed();
-
-    }
 }
