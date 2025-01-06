@@ -9,6 +9,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
+
+    CalendarComponent calendarComponent = new CalendarComponent();
+    TableComponent tableComponent = new TableComponent();
+
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement userEmailInput = $("#userEmail");
@@ -24,8 +28,7 @@ public class RegistrationPage {
     private SelenideElement cityInput = $("#city");
     private SelenideElement submitBtn = $("#submit");
 
-    CalendarComponent calendarComponent = new CalendarComponent();
-    TableComponent tableComponent = new TableComponent();
+
 
 
     public RegistrationPage openPage() {
@@ -106,29 +109,12 @@ public class RegistrationPage {
         return this;
     }
 
-
-    public SelenideElement getCityInput() {
-        return cityInput;
-    }
-
-    public void setCityInput(SelenideElement cityInput) {
-        this.cityInput = cityInput;
-    }
-
-    public SelenideElement getStateInput() {
-        return stateInput;
-    }
-
-    public void setStateInput(SelenideElement stateInput) {
-        this.stateInput = stateInput;
-    }
     public RegistrationPage checkResult(String key, String value) {
         tableComponent.checkTableResult(key, value);
         return this;
     }
-    public RegistrationPage verifyUserNumberFieldIsRed() {
+    public void verifyUserNumberFieldIsRed() {
         userNumberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
-        return this;
     }
 }
 

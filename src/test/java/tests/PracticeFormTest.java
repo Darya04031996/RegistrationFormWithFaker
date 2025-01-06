@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.components.RegistrationPage;
 import utils.TestData;
@@ -9,6 +10,7 @@ public class PracticeFormTest extends TestBase {
     TestData testData = new TestData();
 
     @Test
+    @Tag("simple")
     void fillPracticeFormTest() {
         String firstName = testData.getFirstName();
         String lastName = testData.getLastName();
@@ -55,6 +57,7 @@ public class PracticeFormTest extends TestBase {
                 .checkResult("State and City", state + " " + city);
     }
     @Test
+    @Tag("simple")
     void incompleteDatesTest() {
         registrationPage.openPage()
                 .removeBanner()
@@ -75,6 +78,7 @@ public class PracticeFormTest extends TestBase {
 
     }
     @Test
+    @Tag("simple")
     void inccorectDateTest() {
         registrationPage.openPage()
                 .removeBanner()
