@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.components.RegistrationPage;
+import pages.RegistrationPage;
 import utils.TestData;
 
 public class PracticeFormTest extends TestBase {
