@@ -20,7 +20,7 @@ import java.util.Map;
             Configuration.pageLoadStrategy = "eager";
             Configuration.remote = "https://user1:1234@" + System.getProperty("remoteHost") + "/wd/hub";
             Configuration.browser = System.getProperty("browser");
-            Configuration.browserVersion = System.getProperty("browserVersion", "124");
+            Configuration.browserVersion = System.getProperty("browserVersion", "120");
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.<String, Object>of(
