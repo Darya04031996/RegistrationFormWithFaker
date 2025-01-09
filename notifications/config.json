@@ -1,8 +1,8 @@
 {
     "base": {
     "project": "Telegram bot Darya",
-    "environment": " ",
-    "comment": " ",
+    "environment": "STAGE",
+    "comment": "comment here @melgunova",
     "reportLink": "https://jenkins.autotests.cloud/job/RegistrationFormWithFaker_simple/9/",
     "language": "en",
     "allureFolder": "allure-report",
